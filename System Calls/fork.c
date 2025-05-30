@@ -8,12 +8,13 @@ int main(){
     if(pid == 0){
 
         // This is child process
-        int childPID = getpid();
+        int childPID = getpid(); // returns the process id of current process.
         printf("This is child process with id: %d\n" , childPID);
 
     }else if(pid > 0){
 
         // This is parent process
+        // fork returns child pid in parent process.
         int parentPID = getpid();
         printf("This is parent process with id: %d and child id: %d\n", parentPID, pid);
 
