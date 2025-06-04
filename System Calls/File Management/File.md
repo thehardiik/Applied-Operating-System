@@ -235,3 +235,48 @@ The dup() system call is used to duplicate an existing file descriptor. The new 
         1. Same file offset (so one affects the other)
 
         2. Same underlying open file (same file table entry in the kernel)
+
+### 7. Dup2()
+
+The dup2() system call is used to duplicate one file descriptor to a specific target file descriptor — giving you more control than dup().
+
+#### Syntax:
+
+    int dup2(int oldfd, int newfd);
+
+#### Parameters:
+
+    oldfd: Existing file descriptor (to duplicate).
+
+    newfd: Desired file descriptor number (destination).
+
+#### Return Value:
+
+    On success: Returns newfd.
+
+    On failure: Returns -1 and sets errno.
+
+#### Key Features:
+
+    If newfd is already open, it will be closed automatically before being reused.
+
+    If oldfd == newfd, dup2() does nothing and returns newfd.
+
+#### Use Case Tip:
+
+    1. Use dup() when you just need a duplicate fd.
+
+    2. Use dup2() when you want to redirect I/O (like stdin, stdout, stderr) — especially in shells, pipelines, or when handling child processes.
+
+### 8. STDOUT_FILENO & STDIN_FILENO
+
+These are predefined constants in Unix/Linux that represent the standard file descriptors for input/output streams:
+
+| Stream          | Macro Name      | File Descriptor |
+| --------------- | --------------- | --------------- |
+| Standard Input  | `STDIN_FILENO`  | `0`             |
+| Standard Output | `STDOUT_FILENO` | `1`             |
+| Standard Error  | `STDERR_FILENO` | `2`             |
+
+
+
