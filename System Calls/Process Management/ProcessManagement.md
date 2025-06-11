@@ -143,3 +143,6 @@ Why not call execve() in the parent?
         * The original parent program stops running.
 
         * The parent cannot wait for the child or do any further work because it doesn’t exist anymore as the original program.
+
+### 5. Execlp ()
+    // To be written later.
